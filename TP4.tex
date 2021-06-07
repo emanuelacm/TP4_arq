@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{array, multirow, bigdelim, makecell, booktabs} 
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage[spanish]{babel}
+\usepackage[section]{placeins}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+\usepackage{anysize}
+\marginsize{3cm}{3cm}{2.5cm}{2.5cm}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\author{Emanuel Alfredo Cortez Médici}
+\title{Trabajo Práctico 1}
+\DeclareGraphicsExtensions{.jpeg,.png}
+\usepackage{beramono}% monospaced font with bold variant
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{shellGreen}{RGB}{19,193,106}
+\definecolor{backcolor}{rgb}{0.95,0.95,0.92}
+\definecolor{mateBlack}{RGB}{45,45,50}
+\definecolor{comment}{rgb}{0.1,0.6,0.2}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+
+\lstdefinestyle{vhdl}{
+   language=vhdl,
+   frame=single,
+   basicstyle=\scriptsize,
+   breaklines=true,
+   captionpos=b,
+   keepspaces=true,
+   backgroundcolor=\color{backcolor},
+   keywordstyle=[1]\color{blue}\bf,
+   keywordstyle=[2]\color{red}\bf,
+   keywordstyle=[3]\color{cyan!50}\bf,
+   stringstyle=\color{orange},
+   commentstyle=\color{comment},
+   tabsize=2,
+%   number=left,
+%   numberstep=5pt,
+   showspaces=false,
+   showstringspaces=false,
+   showtabs=false,
+   moredelim=[is][\component]{component\ }{\ is},
+   morekeywords=[1]{
+      library, use ,all,entity,is,port,in,out,end,architecture,of, body,
+      function, variable, begin,and,or,Not,downto,ALL, signal, process, if,
+      else, elsif, case, when, then, range, to, component, type, with, select,
+      others, constant, inout, buffer, map, true, false, array, subtype, wait,
+      wait for, generic, =, <, >, <=, >=, =>,
+   },
+   alsoletter={=, <, >},
+   morekeywords=[2]{
+          STD_LOGIC_VECTOR,STD_LOGIC,IEEE,STD_LOGIC_1164, work, local, real,
+          math_real, time, NUMERIC_STD,STD_LOGIC_ARITH,STD_LOGIC_UNSIGNED,
+          std_logic_vector, std_logic, ieee, numeric_std, std_ulogic,
+          std_logic_1164, natural, bit, bit_vector, signed, unsigned,
+          boolean, integer
+    },
+    morekeywords=[3]{rising_edge, falling_edge, resize, to_signed, to_unsigned},
+    morecomment=[l]{--},
+    morecomment=[s][\color{orange}]{'}{'},
+    rulecolor=\color{black},
+}
+\def\component#1{%
+    \textbf{\textcolor{blue}{component\ }}%
+    \textcolor{green}{#1}%
+    \textbf{\textcolor{blue}{\ is}}%
+}
+
+\lstset{style=vhdl,
+	breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+
+
+
+
+
+\begin{document}
+	\begin{titlepage}
+	\centering
+	
+	\includegraphics[width=0.1\textwidth]{fotos/unsl.png} 
+	
+	{\scshape\LARGE Universidad Nacional de San Luis\par}
+	{\scshape Facultad de Ciencias Físico Matemáticas y Naturales.\par}
+	{\scshape Ingeniería Electrónica con O.S.D.\par}
+	\vspace{1.5cm}
+	{\scshape\Large Arquitectura de computadoras \par}
+	\vspace{1.5cm}
+	{\huge\bfseries Trabajo Práctico N$^{\text{o}}$ 4
+	
+    Camino de datos y control del microprocesador\par}
+	\vspace{2cm}
+	Alumno\par
+	{\Large\itshape 	
+	Cortez Médici Emanuel\par}
+	\vfill
+	Profesores Responsables\par
+	Ing. Andrés~\textsc{Airabella}\\
+	Ing. Astrid~\textsc{Andrada}
+	
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+
+\newpage
+
+\section{Genere dibujos independientes para cada uno de los bloques que va a utilizar para
+construir el procesador.}
+
+Se generan los siguientes bloques independientes para 
+
+\section{Realice el dibujo de un Datapath completo para el set de instrucciones propuesto.
+Indique en el dibujo anchos de todos los buses y nombres de las señales
+intermedias que luego utilizará en el código.}
+
+\section{Realice una tabla de verdad para todas las señales de control.}
+
+\section{Cree un repositorio en www.gitlab.com siguiendo este tutorial:
+https://alejandrojs.wordpress.com/2017/06/01/como-empezar-a-usar-git-con-gitlab/}
+
+\section{Elabore un informe con el desarrollo de los ejercicios. Este informe deberá
+escribirse dentro del mismo repositorio creado en el ejercicio anterior, utilizando el
+formato “Markdown”.}
+
+
+\end{document}
