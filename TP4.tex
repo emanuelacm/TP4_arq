@@ -20,8 +20,10 @@
 \usepackage{epstopdf}
 \usepackage[font=scriptsize,labelfont=bf]{caption}
 \usepackage{anysize}
-\usepackage{tikz}
-\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+%\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc,shapes.geometric,quotes}
+\usetikzlibrary{babel}
 \marginsize{3cm}{3cm}{2.5cm}{2.5cm}
 \providecommand{\abs}[1]{\lvert#1\rvert}
 \providecommand{\norm}[1]{\lVert#1\rVert}
@@ -33,7 +35,6 @@
 
 \usepackage{listings}
 \usepackage{color}
-
 
 
 \begin{document}
@@ -72,7 +73,44 @@
 construir el procesador.}
 
 Se generan los siguientes bloques independientes para cada uno de los bloques que se necesitan para construir el procesador:
+\begin{center} 
+\begin{tikzpicture}[thick]
+	\tikzset{mux/.style={muxdemux, muxdemux def={Lh=4, Rh=2, NL=2, NB=1, NR=1}}}
+	\tikzset{ALU ej/.style={ALU, muxdemux def={NL=2, NT=0,NB=0, NR=1}}}
 
+    % AND logic gates
+    \node[and port, fill=gray!50] (and1) at (2,0) {AND};
+    \node[or port, fill=gray!50] (or1) at (2,2) {OR};
+    \node[mux, fill=gray!50] (mux1) at (2,-3) {Mux};
+	\node[ALU ej, fill=gray!50] (alu1) at (8,2) {\rotatebox{90}{ALU}}; 
+    
+    % Labels compuerta and
+    \draw (and1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
+    \draw (and1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
+    \draw (and1.out) -- ++(0.75,0) node[right]{$S$};
+
+    % Labels compuerta or
+    \draw (or1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
+    \draw (or1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
+    \draw (or1.out) -- ++(0.75,0) node[right]{$S$};
+
+ 	% Labels mux
+	\draw (mux1.lpin 1) -- ++(-0.75,0)  node[left]{$X_1$};
+	\draw (mux1.lpin 1) ++(0.3,0) node[right, font=\small]{0};
+	\draw (mux1.lpin 2) -- ++(-0.75,0) node[left]{$X_2$}; 
+	\draw (mux1.lpin 2) ++(0.3,0) node[right, font=\small]{1};
+	\draw (mux1.rpin 1) -- ++(0.75,0) node[right]{$Y$};
+	\draw (mux1.bpin 1) -- ++(-1.75,-1) node[left]{$Sel$};
+
+	%Label ALU
+	\draw (alu1.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
+	\draw (alu1.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
+	\draw (alu1.rpin 1) -- ++(0.75,0) node[right]{$Y_o$};
+
+	
+
+\end{tikzpicture}
+\end{center}
 
 \section{Realice el dibujo de un Datapath completo para el set de instrucciones propuesto.
 Indique en el dibujo anchos de todos los buses y nombres de las señales
@@ -81,7 +119,7 @@ intermedias que luego utilizará en el código.}
 \section{Realice una tabla de verdad para todas las señales de control.}
 
 \section{Cree un repositorio en www.gitlab.com siguiendo este tutorial:
-https://alejandrojs.wordpress.com/2017/06/01/como-empezar-a-usar-git-con-gitlab/}
+\small https://alejandrojs.wordpress.com/2017/06/01/como-empezar-a-usar-git-con-gitlab/}
 
 \section{Elabore un informe con el desarrollo de los ejercicios. Este informe deberá
 escribirse dentro del mismo repositorio creado en el ejercicio anterior, utilizando el

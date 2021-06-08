@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.26)  7 JUN 2021 16:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.26)  7 JUN 2021 22:13
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -391,7 +391,9 @@ Version 1.0, Aug 13, 1994
 \@Rightmargin=\dimen191
 \@Topmargin=\dimen192
 \@Bottommargin=\dimen193
-) (d:/texlive/2020/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (d:/texlive/2020/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (d:/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (d:/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+) (d:/texlive/2020/texmf-dist/tex/latex/circuitikz/circuitikz.sty
+Package: circuitikz 2020/03/22{} The CircuiTikz circuit drawing package version 1.0.2
+ (d:/texlive/2020/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (d:/texlive/2020/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (d:/texlive/2020/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (d:/texlive/2020/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks33
 \pgfutil@tempdima=\dimen194
 \pgfutil@tempdimb=\dimen195
@@ -571,36 +573,91 @@ File: pgfmodulematrix.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \tikz@expandcount=\count320
  (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-))) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
+))) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfarrowinset=\dimen300
+\pgfarrowlength=\dimen301
+\pgfarrowwidth=\dimen302
+\pgfarrowlinewidth=\dimen303
+) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybending.code.tex
+File: tikzlibrarybending.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+ (d:/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex
+File: pgfmodulebending.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+ (d:/texlive/2020/texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransformations.code.tex
+File: pgfmodulenonlineartransformations.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgftransformnonlinearflatness=\dimen304
+) (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.code.tex
+File: pgflibrarycurvilinear.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@curvilinear@time@a=\dimen305
+\pgf@curvilinear@length@a=\dimen306
+\pgf@curvilinear@length@b=\dimen307
+\pgf@curvilinear@length@c=\dimen308
+\pgf@curvilinear@length@d=\dimen309
+)
+\pgf@arrows@the@rigidity=\dimen310
+)) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcirc.defines.tex
+\pgf@circ@count@a=\count321
+\pgf@circ@count@b=\count322
+\pgf@circ@count@c=\count323
+\pgf@circ@res@up=\dimen311
+\pgf@circ@res@down=\dimen312
+\pgf@circ@res@zero=\dimen313
+\pgf@circ@res@left=\dimen314
+\pgf@circ@res@right=\dimen315
+\pgf@circ@res@other=\dimen316
+\pgf@circ@res@step=\dimen317
+\pgf@circ@res@temp=\dimen318
+\pgfstartlinewidth=\dimen319
+\pgf@circ@Rlen=\dimen320
+\pgf@circ@scaled@Rlen=\dimen321
+) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircutils.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircshapes.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircmonopoles.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircbipoles.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcirctripoles.tex
+\pgf@circ@res@count=\count324
+) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex) (d:/texlive/2020/texmf-dist/tex/generic/circuitikz/pgfcircpath.tex)
+
+Package circuitikz Warning: You did not specify one of the voltage directions:
+(circuitikz)                  oldvoltagedirection, nooldvoltagedirection, 
+(circuitikz)                  RPvoltages or EFvoltages 
+(circuitikz)                Default directions may have changed, 
+(circuitikz)                please check the manual.
+
+) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
  (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\arrowsize=\dimen300
+\arrowsize=\dimen322
 )) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.gates.logic.US.code.tex
 File: tikzlibraryshapes.gates.logic.US.code.tex 2020/01/08 v3.1.5b (3.1.5b)
  (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.logic.US.code.tex (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.logic.code.tex))) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.gates.logic.IEC.code.tex
 File: tikzlibraryshapes.gates.logic.IEC.code.tex 2020/01/08 v3.1.5b (3.1.5b)
- (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.logic.IEC.code.tex)) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
-File: tikzlibrarycalc.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+ (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.logic.IEC.code.tex)) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+ (d:/texlive/2020/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+) (d:/texlive/2020/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybabel.code.tex
+File: tikzlibrarybabel.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ) (d:/texlive/2020/texmf-dist/tex/latex/bera/beramono.sty
 Package: beramono 2004/01/31 (WaS)
 ) (d:/texlive/2020/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count321
+\lst@mode=\count325
 \lst@gtempboxa=\box71
 \lst@token=\toks45
-\lst@length=\count322
-\lst@currlwidth=\dimen301
-\lst@column=\count323
-\lst@pos=\count324
-\lst@lostspace=\dimen302
-\lst@width=\dimen303
-\lst@newlines=\count325
-\lst@lineno=\count326
-\lst@maxwidth=\dimen304
+\lst@length=\count326
+\lst@currlwidth=\dimen323
+\lst@column=\count327
+\lst@pos=\count328
+\lst@lostspace=\dimen324
+\lst@width=\dimen325
+\lst@newlines=\count329
+\lst@lineno=\count330
+\lst@maxwidth=\dimen326
  (d:/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count327
-\lst@skipnumbers=\count328
+\c@lstnumber=\count331
+\lst@skipnumbers=\count332
 \lst@framebox=\box72
 ) (d:/texlive/2020/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
@@ -615,7 +672,7 @@ runsystem(del TP4.aex)...executed.
 
  (d:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count329
+\l__kernel_color_stack_int=\count333
 \l__pdf_internal_box=\box73
 ) (d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.aux
 LaTeX Info: Redefining \. on input line 7.
@@ -623,32 +680,32 @@ LaTeX Info: Redefining \% on input line 7.
 )
 \openout1 = `TP4.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
  (d:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count330
-\scratchdimen=\dimen305
+\scratchcounter=\count334
+\scratchdimen=\dimen327
 \scratchbox=\box74
-\nofMPsegments=\count331
-\nofMParguments=\count332
+\nofMPsegments=\count335
+\nofMParguments=\count336
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count333
-\MPscratchDim=\dimen306
-\MPnumerator=\count334
-\makeMPintoPDFobject=\count335
+\MPscratchCnt=\count337
+\MPscratchDim=\dimen328
+\MPnumerator=\count338
+\makeMPintoPDFobject=\count339
 \everyMPtoPDFconversion=\toks47
 )
 Package caption Info: Begin \AtBeginDocument code.
@@ -656,29 +713,25 @@ Package caption Info: listings package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \. on input line 39.
-LaTeX Info: Redefining \% on input line 39.
+LaTeX Info: Redefining \. on input line 40.
+LaTeX Info: Redefining \% on input line 40.
  ABD: EveryShipout initializing macros
-\c@lstlisting=\count336
+\c@lstlisting=\count340
 <fotos/unsl.png, id=4, 416.55624pt x 505.89pt>
 File: fotos/unsl.png Graphic file (type png)
 <use fotos/unsl.png>
-Package pdftex.def Info: fotos/unsl.png  used on input line 43.
+Package pdftex.def Info: fotos/unsl.png  used on input line 44.
 (pdftex.def)             Requested size: 42.68173pt x 51.83475pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
  (d:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
  (d:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {d:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/fotos/unsl.png>]
-Overfull \hbox (21.01903pt too wide) in paragraph at lines 84--84
-\T1/cmr/bx/n/14.4 to-rial: https://alejandrojs.wordpress.com/2017/06/01/como-
- []
-
 
 Package caption Warning: Unused \captionsetup[sub] on input line 19.
 See the caption package documentation for explanation.
@@ -688,18 +741,18 @@ LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 ) ) 
 Here is how much of TeX's memory you used:
- 21393 strings out of 480608
- 412114 string characters out of 5907536
- 686769 words of memory out of 5000000
- 36846 multiletter control sequences out of 15000+600000
- 545389 words of font info for 54 fonts, out of 8000000 for 9000
+ 33741 strings out of 480608
+ 783113 string characters out of 5907536
+ 1196988 words of memory out of 5000000
+ 49103 multiletter control sequences out of 15000+600000
+ 551276 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,5n,60p,903b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
-{d:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb>
-Output written on d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.pdf (2 pages, 151417 bytes).
+ 68i,6n,70p,903b,835s stack positions out of 5000i,500n,10000p,200000b,80000s
+{d:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<d:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb>
+Output written on d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.pdf (2 pages, 205784 bytes).
 PDF statistics:
- 50 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 70 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
