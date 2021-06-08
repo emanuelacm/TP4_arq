@@ -1,9 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1623168466 "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.tex" "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.pdf" "TP4" 1623168474
-  "TP4.aux" 1623168470 1272 f7d6c2565b0791ec17db9d2f7b46d294 "pdflatex"
-  "TP4.tex" 1623168463 7178 3f789491f0a45a404e72ac80a46124a7 ""
-  "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.aux" 1623168470 1272 f7d6c2565b0791ec17db9d2f7b46d294 ""
-  "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.tex" 1623168463 7178 3f789491f0a45a404e72ac80a46124a7 ""
+["pdflatex"] 1623169442 "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.tex" "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.pdf" "TP4" 1623169449
+  "TP4.aux" 1623169446 1272 f7d6c2565b0791ec17db9d2f7b46d294 "pdflatex"
+  "TP4.tex" 1623169440 7276 73a5c37f42dd39f009e4af7cb0fd08cf ""
+  "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.aux" 1623169446 1272 f7d6c2565b0791ec17db9d2f7b46d294 ""
+  "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.tex" 1623169440 7276 73a5c37f42dd39f009e4af7cb0fd08cf ""
   "d:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1598452183 2971 def0b6c1f0b107b3b936def894055589 ""
   "d:/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1598452643 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1598452448 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -20,6 +20,7 @@
   "d:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1598452448 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
   "d:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm" 1598452448 3584 3169d30142b88a27d4ab0e3468e963a2 ""
   "d:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/ecrm2074.tfm" 1598452448 3584 8e2870ec7aa9776f59654942b0923f51 ""
+  "d:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm" 1598452448 3072 b73d2778cc3af44970de4de5e032d7f6 ""
   "d:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/ecti1440.tfm" 1598452448 3072 9a80c2966d6c06d677719db0a9b772d0 ""
   "d:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1598451863 1004 54797486969f23fa377b128694d548df ""
   "d:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1598451863 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -57,6 +58,7 @@
   "d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb" 1598452184 138258 6525c253f16cededa14c7fd0da7f67b2 ""
   "d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb" 1598452184 145929 5c9aebea9ba6e33fc93158c04a3bdcd8 ""
   "d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb" 1598452184 136101 b18d10b3436f8cb0cd04046deb340fe7 ""
+  "d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb" 1598452184 196446 823e77efd89b89faab342901e22eb237 ""
   "d:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb" 1598452184 187615 bb451e62cf0d8d93a332d893f0d610a9 ""
   "d:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1598453331 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "d:/texlive/2020/texmf-dist/tex/generic/babel-spanish/spanish.ldf" 1598451963 26223 0286ca123141cff8dd4956c4576d2ef4 ""
@@ -243,8 +245,8 @@
   "d:/texlive/2020/texmf.cnf" 1598454605 673 4ae7b2f49cee444c5343a45b5d0f169c ""
   "fotos/unsl.png" 1573864541 39010 d5d5a7145e57f0a088e5147497fa19ac ""
   (generated)
+  "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.pdf"
   "TP4.aux"
   "TP4.pdf"
-  "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.pdf"
-  "TP4.log"
   "d:/Desktop/UNSL_2021/Arq_de_computadoras/TPs/TP_4/TP4_arq/TP4.log"
+  "TP4.log"
