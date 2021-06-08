@@ -20,6 +20,10 @@
 \usepackage{epstopdf}
 \usepackage[font=scriptsize,labelfont=bf]{caption}
 \usepackage{anysize}
+%\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc,shapes.geometric,quotes,decorations.markings}
+\usetikzlibrary{babel}
 \marginsize{3cm}{3cm}{2.5cm}{2.5cm}
 \providecommand{\abs}[1]{\lvert#1\rvert}
 \providecommand{\norm}[1]{\lVert#1\rVert}
@@ -31,66 +35,6 @@
 
 \usepackage{listings}
 \usepackage{color}
-
-\definecolor{shellGreen}{RGB}{19,193,106}
-\definecolor{backcolor}{rgb}{0.95,0.95,0.92}
-\definecolor{mateBlack}{RGB}{45,45,50}
-\definecolor{comment}{rgb}{0.1,0.6,0.2}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-
-\lstdefinestyle{vhdl}{
-   language=vhdl,
-   frame=single,
-   basicstyle=\scriptsize,
-   breaklines=true,
-   captionpos=b,
-   keepspaces=true,
-   backgroundcolor=\color{backcolor},
-   keywordstyle=[1]\color{blue}\bf,
-   keywordstyle=[2]\color{red}\bf,
-   keywordstyle=[3]\color{cyan!50}\bf,
-   stringstyle=\color{orange},
-   commentstyle=\color{comment},
-   tabsize=2,
-%   number=left,
-%   numberstep=5pt,
-   showspaces=false,
-   showstringspaces=false,
-   showtabs=false,
-   moredelim=[is][\component]{component\ }{\ is},
-   morekeywords=[1]{
-      library, use ,all,entity,is,port,in,out,end,architecture,of, body,
-      function, variable, begin,and,or,Not,downto,ALL, signal, process, if,
-      else, elsif, case, when, then, range, to, component, type, with, select,
-      others, constant, inout, buffer, map, true, false, array, subtype, wait,
-      wait for, generic, =, <, >, <=, >=, =>,
-   },
-   alsoletter={=, <, >},
-   morekeywords=[2]{
-          STD_LOGIC_VECTOR,STD_LOGIC,IEEE,STD_LOGIC_1164, work, local, real,
-          math_real, time, NUMERIC_STD,STD_LOGIC_ARITH,STD_LOGIC_UNSIGNED,
-          std_logic_vector, std_logic, ieee, numeric_std, std_ulogic,
-          std_logic_1164, natural, bit, bit_vector, signed, unsigned,
-          boolean, integer
-    },
-    morekeywords=[3]{rising_edge, falling_edge, resize, to_signed, to_unsigned},
-    morecomment=[l]{--},
-    morecomment=[s][\color{orange}]{'}{'},
-    rulecolor=\color{black},
-}
-\def\component#1{%
-    \textbf{\textcolor{blue}{component\ }}%
-    \textcolor{green}{#1}%
-    \textbf{\textcolor{blue}{\ is}}%
-}
-
-\lstset{style=vhdl,
-	breaklines=true,
-    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
-}
-
-
-
 
 
 \begin{document}
@@ -128,7 +72,103 @@
 \section{Genere dibujos independientes para cada uno de los bloques que va a utilizar para
 construir el procesador.}
 
-Se generan los siguientes bloques independientes para 
+Se generan los siguientes bloques independientes para cada uno de los bloques que se necesitan para construir el procesador:
+\begin{center} 
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[thick]
+	\tikzset{mux/.style={muxdemux, muxdemux def={Lh=4, Rh=2, NL=2, NB=1, NR=1}}}
+	\tikzset{ALU ej/.style={ALU, muxdemux def={NL=2, NT=0,NB=0, NR=1}}}
+
+	\tikzset{PC/.style={muxdemux,muxdemux def={Lh=4, NL=2, Rh=4, NR=1,NB=0, w=2, NT=0}}}
+
+	\tikzset{Mem/.style={muxdemux,muxdemux def={Lh=4, NL=3, Rh=4, NR=1,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
+
+	\tikzset{banco/.style={muxdemux,muxdemux def={Lh=8, NL=6, Rh=8, NR=3,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
+
+
+    % Equipos
+    \node[and port, fill=gray!50] (and1) at (3,0) {AND};
+    \node[or port, fill=gray!50] (or1) at (3,3) {OR};
+    \node[mux, fill=gray!50] (mux1) at (3,-3) {Mux};
+	\node[ALU ej, fill=gray!50] (alu1) at (9,3) {\rotatebox{90}{ALU}}; 
+	\node[adder, fill=gray!50] (sum) at (9,0) {};
+	\node[PC, fill=gray!50] (programc) at (9,-3) {PC};
+	\node[Mem, fill=gray!50] (mem) at (-6,3) {\begin{tabular}{c} Memoria \\ de \\ Programa \end{tabular}};
+	\node[Mem, fill=gray!50] (mem_data) at (-6,0) {\begin{tabular}{c} Memoria \\ de \\ Datos \end{tabular}};
+	\node[banco, fill=gray!50] (regis) at (-6,-4) {\begin{tabular}{c} Banco \\ de \\ Registros \end{tabular}};
+
+    % Labels compuerta and
+    \draw (and1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
+    \draw (and1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
+    \draw (and1.out) -- ++(0.75,0) node[right]{$S$};
+
+    % Labels compuerta or
+    \draw (or1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
+    \draw (or1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
+    \draw (or1.out) -- ++(0.75,0) node[right]{$S$};
+
+ 	% Labels mux
+	\draw (mux1.lpin 1) -- ++(-0.75,0)  node[left]{$X_1$};
+	\draw (mux1.lpin 1) ++(0.3,0) node[right, font=\small]{0};
+	\draw (mux1.lpin 2) -- ++(-0.75,0) node[left]{$X_2$}; 
+	\draw (mux1.lpin 2) ++(0.3,0) node[right, font=\small]{1};
+	\draw (mux1.rpin 1) -- ++(0.75,0) node[right]{$Y$};
+	\draw (mux1.bpin 1) -- ++(-1.75,-1) node[left]{$Sel$};
+
+	%Label ALU
+	\draw (alu1.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
+	\draw (alu1.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
+	\draw (alu1.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
+
+	%Label sumador
+	\draw (sum.south) -- ++(0,-0.75)  node[left]{$A_i$};
+	\draw (sum.west) -- ++(-0.75,0)  node[left]{$B_i$};
+	\draw (sum.east)-- ++(0.75,0)  node[right,inputarrow]{$Y_o$};
+
+	%Label PC
+	\draw (programc.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
+	\draw (programc.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
+	\draw (programc.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
+
+	%Label memoria de programa
+	\draw (mem.rpin 1) -- (mem.brpin 1);
+	\draw (mem.lpin 2) -- (mem.blpin 2);
+	\draw (mem.lpin 3) -- (mem.blpin 3);
+	\draw (mem.lpin 2) -- ++(-0.75,0) node[left]{$ADDR_i$};
+	\draw (mem.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
+	\draw (mem.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
+
+	%Label memoria de datos
+	\draw (mem_data.rpin 1) -- (mem_data.brpin 1);
+	\draw (mem_data.lpin 1) -- (mem_data.blpin 1);
+	\draw (mem_data.lpin 2) -- (mem_data.blpin 2);
+	\draw (mem_data.lpin 3) -- (mem_data.blpin 3);
+	\draw (mem_data.lpin 1) -- ++(-0.75,0) node[left]{$ADDR_i$};
+	\draw (mem_data.lpin 2) -- ++(-0.75,0) node[left]{$DATA_i$};
+	\draw (mem_data.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
+	\draw (mem_data.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
+
+	%Label banco de registros
+	\draw (regis.rpin 1) -- (regis.brpin 1);
+	\draw (regis.rpin 3) -- (regis.brpin 3);
+
+	\draw (regis.lpin 1) -- (regis.blpin 1);
+	\draw (regis.lpin 2) -- (regis.blpin 2);
+	\draw (regis.lpin 3) -- (regis.blpin 3);
+	\draw (regis.lpin 5) -- (regis.blpin 5);
+	\draw (regis.lpin 6) -- (regis.blpin 6);
+
+	\draw (regis.lpin 1) -- ++(-0.75,0) node[left]{$A_i$};
+	\draw (regis.lpin 2) -- ++(-0.75,0) node[left]{$B_i$};
+	\draw (regis.lpin 3) -- ++(-0.75,0)  node[left]{$C_i$};
+	\draw (regis.lpin 5) -- ++(-0.75,0) node[left]{$Wc_i$};
+	\draw (regis.lpin 6) -- ++(-0.75,0)  node[left]{$CLK_i$};
+
+	\draw (regis.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Ra_o$};
+	\draw (regis.rpin 3) -- ++(0.75,0) node[right,inputarrow]{$Rb_o$};
+
+\end{tikzpicture}}
+\end{center}
 
 \section{Realice el dibujo de un Datapath completo para el set de instrucciones propuesto.
 Indique en el dibujo anchos de todos los buses y nombres de las señales
@@ -137,7 +177,7 @@ intermedias que luego utilizará en el código.}
 \section{Realice una tabla de verdad para todas las señales de control.}
 
 \section{Cree un repositorio en www.gitlab.com siguiendo este tutorial:
-https://alejandrojs.wordpress.com/2017/06/01/como-empezar-a-usar-git-con-gitlab/}
+\small https://alejandrojs.wordpress.com/2017/06/01/como-empezar-a-usar-git-con-gitlab/}
 
 \section{Elabore un informe con el desarrollo de los ejercicios. Este informe deberá
 escribirse dentro del mismo repositorio creado en el ejercicio anterior, utilizando el
