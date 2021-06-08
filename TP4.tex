@@ -22,7 +22,7 @@
 \usepackage{anysize}
 %\usepackage{tikz}
 \usepackage[american]{circuitikz}
-\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc,shapes.geometric,quotes}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc,shapes.geometric,quotes,decorations.markings}
 \usetikzlibrary{babel}
 \marginsize{3cm}{3cm}{2.5cm}{2.5cm}
 \providecommand{\abs}[1]{\lvert#1\rvert}
@@ -74,16 +74,29 @@ construir el procesador.}
 
 Se generan los siguientes bloques independientes para cada uno de los bloques que se necesitan para construir el procesador:
 \begin{center} 
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[thick]
 	\tikzset{mux/.style={muxdemux, muxdemux def={Lh=4, Rh=2, NL=2, NB=1, NR=1}}}
 	\tikzset{ALU ej/.style={ALU, muxdemux def={NL=2, NT=0,NB=0, NR=1}}}
 
-    % AND logic gates
-    \node[and port, fill=gray!50] (and1) at (2,0) {AND};
-    \node[or port, fill=gray!50] (or1) at (2,2) {OR};
-    \node[mux, fill=gray!50] (mux1) at (2,-3) {Mux};
-	\node[ALU ej, fill=gray!50] (alu1) at (8,2) {\rotatebox{90}{ALU}}; 
-    
+	\tikzset{PC/.style={muxdemux,muxdemux def={Lh=4, NL=2, Rh=4, NR=1,NB=0, w=2, NT=0}}}
+
+	\tikzset{Mem/.style={muxdemux,muxdemux def={Lh=4, NL=3, Rh=4, NR=1,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
+
+	\tikzset{banco/.style={muxdemux,muxdemux def={Lh=8, NL=6, Rh=8, NR=3,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
+
+
+    % Equipos
+    \node[and port, fill=gray!50] (and1) at (3,0) {AND};
+    \node[or port, fill=gray!50] (or1) at (3,3) {OR};
+    \node[mux, fill=gray!50] (mux1) at (3,-3) {Mux};
+	\node[ALU ej, fill=gray!50] (alu1) at (9,3) {\rotatebox{90}{ALU}}; 
+	\node[adder, fill=gray!50] (sum) at (9,0) {};
+	\node[PC, fill=gray!50] (programc) at (9,-3) {PC};
+	\node[Mem, fill=gray!50] (mem) at (-6,3) {\begin{tabular}{c} Memoria \\ de \\ Programa \end{tabular}};
+	\node[Mem, fill=gray!50] (mem_data) at (-6,0) {\begin{tabular}{c} Memoria \\ de \\ Datos \end{tabular}};
+	\node[banco, fill=gray!50] (regis) at (-6,-4) {\begin{tabular}{c} Banco \\ de \\ Registros \end{tabular}};
+
     % Labels compuerta and
     \draw (and1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
     \draw (and1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
@@ -105,11 +118,56 @@ Se generan los siguientes bloques independientes para cada uno de los bloques qu
 	%Label ALU
 	\draw (alu1.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
 	\draw (alu1.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
-	\draw (alu1.rpin 1) -- ++(0.75,0) node[right]{$Y_o$};
+	\draw (alu1.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
 
-	
+	%Label sumador
+	\draw (sum.south) -- ++(0,-0.75)  node[left]{$A_i$};
+	\draw (sum.west) -- ++(-0.75,0)  node[left]{$B_i$};
+	\draw (sum.east)-- ++(0.75,0)  node[right,inputarrow]{$Y_o$};
 
-\end{tikzpicture}
+	%Label PC
+	\draw (programc.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
+	\draw (programc.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
+	\draw (programc.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
+
+	%Label memoria de programa
+	\draw (mem.rpin 1) -- (mem.brpin 1);
+	\draw (mem.lpin 2) -- (mem.blpin 2);
+	\draw (mem.lpin 3) -- (mem.blpin 3);
+	\draw (mem.lpin 2) -- ++(-0.75,0) node[left]{$ADDR_i$};
+	\draw (mem.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
+	\draw (mem.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
+
+	%Label memoria de datos
+	\draw (mem_data.rpin 1) -- (mem_data.brpin 1);
+	\draw (mem_data.lpin 1) -- (mem_data.blpin 1);
+	\draw (mem_data.lpin 2) -- (mem_data.blpin 2);
+	\draw (mem_data.lpin 3) -- (mem_data.blpin 3);
+	\draw (mem_data.lpin 1) -- ++(-0.75,0) node[left]{$ADDR_i$};
+	\draw (mem_data.lpin 2) -- ++(-0.75,0) node[left]{$DATA_i$};
+	\draw (mem_data.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
+	\draw (mem_data.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
+
+	%Label banco de registros
+	\draw (regis.rpin 1) -- (regis.brpin 1);
+	\draw (regis.rpin 3) -- (regis.brpin 3);
+
+	\draw (regis.lpin 1) -- (regis.blpin 1);
+	\draw (regis.lpin 2) -- (regis.blpin 2);
+	\draw (regis.lpin 3) -- (regis.blpin 3);
+	\draw (regis.lpin 5) -- (regis.blpin 5);
+	\draw (regis.lpin 6) -- (regis.blpin 6);
+
+	\draw (regis.lpin 1) -- ++(-0.75,0) node[left]{$A_i$};
+	\draw (regis.lpin 2) -- ++(-0.75,0) node[left]{$B_i$};
+	\draw (regis.lpin 3) -- ++(-0.75,0)  node[left]{$C_i$};
+	\draw (regis.lpin 5) -- ++(-0.75,0) node[left]{$Wc_i$};
+	\draw (regis.lpin 6) -- ++(-0.75,0)  node[left]{$CLK_i$};
+
+	\draw (regis.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Ra_o$};
+	\draw (regis.rpin 3) -- ++(0.75,0) node[right,inputarrow]{$Rb_o$};
+
+\end{tikzpicture}}
 \end{center}
 
 \section{Realice el dibujo de un Datapath completo para el set de instrucciones propuesto.
