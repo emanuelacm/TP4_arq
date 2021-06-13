@@ -36,6 +36,9 @@
 \usepackage{listings}
 \usepackage{color}
 
+\newcommand{\boundellipse}[3]% center, xdim, ydim
+{(#1) ellipse (#2 and #3)
+}
 
 \begin{document}
 	\begin{titlepage}
@@ -74,108 +77,302 @@ construir el procesador.}
 
 Se generan los siguientes bloques independientes para cada uno de los bloques que se necesitan para construir el procesador:
 \begin{center} 
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}[thick]
-	\tikzset{mux/.style={muxdemux, muxdemux def={Lh=4, Rh=2, NL=2, NB=1, NR=1}}}
-	\tikzset{ALU ej/.style={ALU, muxdemux def={NL=2, NT=0,NB=0, NR=1}}}
+	\resizebox{\textwidth}{!}{%
+	\begin{tikzpicture}[thick]
+		\tikzset{mux/.style={muxdemux, muxdemux def={Lh=4, Rh=2, NL=2, NB=1, NR=1}}}
+		\tikzset{ALU ej/.style={ALU, muxdemux def={NL=2, NT=0,NB=0, NR=1}}}
+	
+		\tikzset{PC/.style={muxdemux,muxdemux def={Lh=4, NL=2, Rh=4, NR=1,NB=0, w=2, NT=0}}}
+	
+		\tikzset{Mem/.style={muxdemux,muxdemux def={Lh=4, NL=3, Rh=4, NR=1,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
+	
+		\tikzset{banco/.style={muxdemux,muxdemux def={Lh=8, NL=6, Rh=8, NR=3,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
+	
+	
+		% Equipos
+		\node[and port, fill=gray!50] (and1) at (3,0) {AND};
+		\node[or port, fill=gray!50] (or1) at (3,3) {OR};
+		\node[mux, fill=gray!50] (mux1) at (3,-3) {Mux};
+		\node[ALU ej, fill=gray!50] (alu1) at (9,3) {\rotatebox{90}{ALU}}; 
+		\node[adder, fill=gray!50] (sum) at (9,0) {};
+		\node[PC, fill=gray!50] (programc) at (9,-3) {PC};
+		\node[Mem, fill=gray!50] (mem) at (-6,3) {\begin{tabular}{c} Memoria \\ de \\ Programa \end{tabular}};
+		\node[Mem, fill=gray!50] (mem_data) at (-6,0) {\begin{tabular}{c} Memoria \\ de \\ Datos \end{tabular}};
+		\node[banco, fill=gray!50] (regis) at (-6,-4) {\begin{tabular}{c} Banco \\ de \\ Registros \end{tabular}};
+	
+		% Labels compuerta and
+		\draw (and1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
+		\draw (and1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
+		\draw (and1.out) -- ++(0.75,0) node[right]{$S$};
+	
+		% Labels compuerta or
+		\draw (or1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
+		\draw (or1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
+		\draw (or1.out) -- ++(0.75,0) node[right]{$S$};
+	
+		 % Labels mux
+		\draw (mux1.lpin 1) -- ++(-0.75,0)  node[left]{$X_1$};
+		\draw (mux1.lpin 1) ++(0.3,0) node[right, font=\small]{0};
+		\draw (mux1.lpin 2) -- ++(-0.75,0) node[left]{$X_2$}; 
+		\draw (mux1.lpin 2) ++(0.3,0) node[right, font=\small]{1};
+		\draw (mux1.rpin 1) -- ++(0.75,0) node[right]{$Y$};
+		\draw (mux1.bpin 1) -- ++(-1.75,-1) node[left]{$Sel$};
+	
+		%Label ALU
+		\draw (alu1.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
+		\draw (alu1.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
+		\draw (alu1.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
+	
+		%Label sumador
+		\draw (sum.south) -- ++(0,-0.75)  node[left]{$A_i$};
+		\draw (sum.west) -- ++(-0.75,0)  node[left]{$B_i$};
+		\draw (sum.east)-- ++(0.75,0)  node[right,inputarrow]{$Y_o$};
+	
+		%Label PC
+		\draw (programc.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
+		\draw (programc.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
+		\draw (programc.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
+	
+		%Label memoria de programa
+		\draw (mem.rpin 1) -- (mem.brpin 1);
+		\draw (mem.lpin 2) -- (mem.blpin 2);
+		\draw (mem.lpin 3) -- (mem.blpin 3);
+		\draw (mem.lpin 2) -- ++(-0.75,0) node[left]{$ADDR_i$};
+		\draw (mem.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
+		\draw (mem.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
+	
+		%Label memoria de datos
+		\draw (mem_data.rpin 1) -- (mem_data.brpin 1);
+		\draw (mem_data.lpin 1) -- (mem_data.blpin 1);
+		\draw (mem_data.lpin 2) -- (mem_data.blpin 2);
+		\draw (mem_data.lpin 3) -- (mem_data.blpin 3);
+		\draw (mem_data.lpin 1) -- ++(-0.75,0) node[left]{$ADDR_i$};
+		\draw (mem_data.lpin 2) -- ++(-0.75,0) node[left]{$DATA_i$};
+		\draw (mem_data.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
+		\draw (mem_data.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
+	
+		%Label banco de registros
+		\draw (regis.rpin 1) -- (regis.brpin 1);
+		\draw (regis.rpin 3) -- (regis.brpin 3);
+	
+		\draw (regis.lpin 1) -- (regis.blpin 1);
+		\draw (regis.lpin 2) -- (regis.blpin 2);
+		\draw (regis.lpin 3) -- (regis.blpin 3);
+		\draw (regis.lpin 5) -- (regis.blpin 5);
+		\draw (regis.lpin 6) -- (regis.blpin 6);
+	
+		\draw (regis.lpin 1) -- ++(-0.75,0) node[left]{$A_i$};
+		\draw (regis.lpin 2) -- ++(-0.75,0) node[left]{$B_i$};
+		\draw (regis.lpin 3) -- ++(-0.75,0)  node[left]{$C_i$};
+		\draw (regis.lpin 5) -- ++(-0.75,0) node[left]{$Wc_i$};
+		\draw (regis.lpin 6) -- ++(-0.75,0)  node[left]{$CLK_i$};
+	
+		\draw (regis.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Ra_o$};
+		\draw (regis.rpin 3) -- ++(0.75,0) node[right,inputarrow]{$Rb_o$};
+	
+	\end{tikzpicture}}
+	\end{center}
 
-	\tikzset{PC/.style={muxdemux,muxdemux def={Lh=4, NL=2, Rh=4, NR=1,NB=0, w=2, NT=0}}}
-
-	\tikzset{Mem/.style={muxdemux,muxdemux def={Lh=4, NL=3, Rh=4, NR=1,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
-
-	\tikzset{banco/.style={muxdemux,muxdemux def={Lh=8, NL=6, Rh=8, NR=3,NB=0, w=4, NT=0, square pins=1},no input leads, external pins width=0.4}}
-
-
-    % Equipos
-    \node[and port, fill=gray!50] (and1) at (3,0) {AND};
-    \node[or port, fill=gray!50] (or1) at (3,3) {OR};
-    \node[mux, fill=gray!50] (mux1) at (3,-3) {Mux};
-	\node[ALU ej, fill=gray!50] (alu1) at (9,3) {\rotatebox{90}{ALU}}; 
-	\node[adder, fill=gray!50] (sum) at (9,0) {};
-	\node[PC, fill=gray!50] (programc) at (9,-3) {PC};
-	\node[Mem, fill=gray!50] (mem) at (-6,3) {\begin{tabular}{c} Memoria \\ de \\ Programa \end{tabular}};
-	\node[Mem, fill=gray!50] (mem_data) at (-6,0) {\begin{tabular}{c} Memoria \\ de \\ Datos \end{tabular}};
-	\node[banco, fill=gray!50] (regis) at (-6,-4) {\begin{tabular}{c} Banco \\ de \\ Registros \end{tabular}};
-
-    % Labels compuerta and
-    \draw (and1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
-    \draw (and1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
-    \draw (and1.out) -- ++(0.75,0) node[right]{$S$};
-
-    % Labels compuerta or
-    \draw (or1.in 1) -- ++(-0.75,0) node[left]{$X_1$};
-    \draw (or1.in 2) -- ++(-0.75,0) node[left]{$X_2$};
-    \draw (or1.out) -- ++(0.75,0) node[right]{$S$};
-
- 	% Labels mux
-	\draw (mux1.lpin 1) -- ++(-0.75,0)  node[left]{$X_1$};
-	\draw (mux1.lpin 1) ++(0.3,0) node[right, font=\small]{0};
-	\draw (mux1.lpin 2) -- ++(-0.75,0) node[left]{$X_2$}; 
-	\draw (mux1.lpin 2) ++(0.3,0) node[right, font=\small]{1};
-	\draw (mux1.rpin 1) -- ++(0.75,0) node[right]{$Y$};
-	\draw (mux1.bpin 1) -- ++(-1.75,-1) node[left]{$Sel$};
-
-	%Label ALU
-	\draw (alu1.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
-	\draw (alu1.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
-	\draw (alu1.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
-
-	%Label sumador
-	\draw (sum.south) -- ++(0,-0.75)  node[left]{$A_i$};
-	\draw (sum.west) -- ++(-0.75,0)  node[left]{$B_i$};
-	\draw (sum.east)-- ++(0.75,0)  node[right,inputarrow]{$Y_o$};
-
-	%Label PC
-	\draw (programc.lpin 1) -- ++(-0.75,0)  node[left]{$A_i$};
-	\draw (programc.lpin 2) -- ++(-0.75,0)  node[left]{$B_i$};
-	\draw (programc.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Y_o$};
-
-	%Label memoria de programa
-	\draw (mem.rpin 1) -- (mem.brpin 1);
-	\draw (mem.lpin 2) -- (mem.blpin 2);
-	\draw (mem.lpin 3) -- (mem.blpin 3);
-	\draw (mem.lpin 2) -- ++(-0.75,0) node[left]{$ADDR_i$};
-	\draw (mem.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
-	\draw (mem.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
-
-	%Label memoria de datos
-	\draw (mem_data.rpin 1) -- (mem_data.brpin 1);
-	\draw (mem_data.lpin 1) -- (mem_data.blpin 1);
-	\draw (mem_data.lpin 2) -- (mem_data.blpin 2);
-	\draw (mem_data.lpin 3) -- (mem_data.blpin 3);
-	\draw (mem_data.lpin 1) -- ++(-0.75,0) node[left]{$ADDR_i$};
-	\draw (mem_data.lpin 2) -- ++(-0.75,0) node[left]{$DATA_i$};
-	\draw (mem_data.lpin 3) -- ++(-0.75,0)  node[left]{$CLK_i$};
-	\draw (mem_data.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$DATA_o$};
-
-	%Label banco de registros
-	\draw (regis.rpin 1) -- (regis.brpin 1);
-	\draw (regis.rpin 3) -- (regis.brpin 3);
-
-	\draw (regis.lpin 1) -- (regis.blpin 1);
-	\draw (regis.lpin 2) -- (regis.blpin 2);
-	\draw (regis.lpin 3) -- (regis.blpin 3);
-	\draw (regis.lpin 5) -- (regis.blpin 5);
-	\draw (regis.lpin 6) -- (regis.blpin 6);
-
-	\draw (regis.lpin 1) -- ++(-0.75,0) node[left]{$A_i$};
-	\draw (regis.lpin 2) -- ++(-0.75,0) node[left]{$B_i$};
-	\draw (regis.lpin 3) -- ++(-0.75,0)  node[left]{$C_i$};
-	\draw (regis.lpin 5) -- ++(-0.75,0) node[left]{$Wc_i$};
-	\draw (regis.lpin 6) -- ++(-0.75,0)  node[left]{$CLK_i$};
-
-	\draw (regis.rpin 1) -- ++(0.75,0) node[right,inputarrow]{$Ra_o$};
-	\draw (regis.rpin 3) -- ++(0.75,0) node[right,inputarrow]{$Rb_o$};
-
-\end{tikzpicture}}
-\end{center}
 
 \section{Realice el dibujo de un Datapath completo para el set de instrucciones propuesto.
 Indique en el dibujo anchos de todos los buses y nombres de las señales
 intermedias que luego utilizará en el código.}
 
-\section{Realice una tabla de verdad para todas las señales de control.}
+Se procede a realizar el Datapath del procesador tilizando la librería \textit{circuitikz}.
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{circuitikz}
+	\tikzset{Ins/.style={muxdemux,muxdemux def={Lh=6, NL=3, Rh=6, NR=5,NB=0, w=5, NT=0, square pins=1},no input leads, external pins width=0}}
+	\tikzset{banco/.style={muxdemux,muxdemux def={Lh=9, NL=6, Rh=9, NR=2,NT=3, w=6, square pins=1},no input leads}}
+	\tikzset{ALU ej/.style={ALU, muxdemux def={NL=2, NT=0,NB=0, NR=1,w=4}}}
+	\tikzset{ALUp/.style={ALU, muxdemux def={NL=2, NT=0,NB=1, NR=2,w=5,Lh=9,Rh=5}}}
+	\tikzset{mux/.style={muxdemux, muxdemux def={Lh=4, Rh=2, NL=2, NB=1, NR=1,w=1}}}
+	\tikzset{shifter/.style={muxdemux, muxdemux def={Lh=2, Rh=2, NL=0, NB=1, NR=1,w=3}}}
+	\tikzset{mem/.style={muxdemux,muxdemux def={Lh=9, NL=3, Rh=9, NR=3,NB=1,NT=1, w=6, NT=1, square pins=1},no input leads, external pins width=0.4}}
 
+	\tikzset{controlador/.style={muxdemux,muxdemux def={Lh=6, NL=1, Rh=6, NR=7, w=2.5, square pins=1},no input leads, external pins width=0}}
+	\tikzset{aluop/.style={muxdemux,muxdemux def={Lh=3, NL=1, Rh=3, NR=1, w=2.5, square pins=1},no input leads, external pins width=0}}
+
+	% Memoria de instrucciones
+	\node[Ins, fill=gray!50,align=center, font=\small\bfseries] (ins) at (3,-1) {Memoria \\ de \\ instrucciones};
+
+	% Dibujo nombre de los pines de la mem ins
+	\draw (ins.lpin 1) -- (ins.blpin 1) node[right, font=\tiny,align=left]{Leer\\dirección};
+
+	\draw (ins.rpin 5) -- (ins.brpin 5) node[left, font=\tiny,align=right]{Instrucción\\ $[31-0]$};
+
+	%PC
+	\node[dipchip,num pins=10,
+	hide numbers,no topmark,external pins width=0,align=center,fill=gray!50,font=\small\bfseries](PC) at (0,0) {PC};
+
+
+	% Registros
+	\node[banco, fill=gray!50,align=center, font=\small\bfseries] (regis) at (9,-1) {Registros};
+
+	%Dibujo nombre de los pines
+	\draw (regis.lpin 1) -- (regis.blpin 1) node[right, font=\tiny,align=left]{Leer\\ Registro 1};
+
+	\draw (regis.lpin 2) -- (regis.blpin 2) node[right, font=\tiny,align=left]{Leer\\ Registro 2};
+
+	\draw (regis.lpin 5) -- (regis.blpin 5) node[right, font=\tiny,align=left]{Escribir\\ Registro};
+
+	\draw (regis.lpin 6) -- (regis.blpin 6) node[right, font=\tiny,align=left]{Escribir\\ Dato};
+
+	\draw (regis.rpin 1) -- (regis.brpin 1) node[left, font=\tiny,align=right]{Leer\\ Dato 1};
+
+	\draw (regis.rpin 2) -- (regis.brpin 2) node[left, font=\tiny,align=right]{Leer\\ Dato 2};
+
+	\draw (regis.tpin 3) -- (regis.btpin 3);
+
+	%ALU PC 
+	\node[ALU ej, fill=gray!50,] (alu1) at (4,13) {\rotatebox{90}{ALU}}; 
+
+	% Dibujo entrada alu
+	\draw (alu1.lpin 2) -- ++(-0.5,0) node[left,align=left]{4} (alu1.blpin 2);
+
+	% ALU principal
+	\node[ALUp, fill=gray!50,font=\small\bfseries] (alup) at (15,-1) {ALU};
+	\draw (alup.rpin 1) -- (alup.brpin 1) node[left, font=\tiny,align=right]{Cero};
+	\draw (alup.rpin 2) -- (alup.brpin 2) node[left, font=\tiny,align=right]{Resultado \\ALU};
+
+	% Multiplexor entre ALUp y Registros
+	\node[mux, fill=gray!50,font=\tiny,yscale=-1] (mux1) at (12,-3) {\scalebox{1}[-1]{Mux}};
+	\draw (mux1.lpin 1) -- (mux1.blpin 1) node[right, font=\tiny,align=right]{1};
+	\draw (mux1.lpin 2) -- (mux1.blpin 2) node[right, font=\tiny,align=right]{0};
+
+	%ALU de arriba
+	\node[ALU ej, fill=gray!50] (alu2) at (16,9) {};
+
+	\draw (alu2.rpin 1) -- (alu2.brpin 1) node[left, font=\tiny,align=right]{Suma};
+
+
+	% Imm Gen 
+	\node[dipchip,num pins=6,
+	hide numbers,no topmark,external pins width=0,align=center,fill=gray!50](imm) at (9,-5) {Gen\\Inm};
+
+	%Shifter
+	\node[shifter,align=left,fill=gray!50,font=\tiny\bfseries](shift) at (12.8,7) {Corre\\izq. 1};
+
+	% Multiplexor entre las 2 alus
+	\node[mux, fill=gray!50,font=\tiny] (mux2) at (20,12) {Mux};
+	\draw (mux2.lpin 1) -- (mux2.blpin 1) node[right, font=\tiny,align=right]{0};
+	\draw (mux2.lpin 2) -- (mux2.blpin 2) node[right, font=\tiny,align=right]{1};
+
+	%Memoria de datos
+	\node[mem,fill=gray!50,font=\small\bfseries,align=center](memd) at (20,-3.5){Memoria\\de\\Datos};
+	\draw (memd.bpin 1) -- (memd.bbpin 1);
+	\draw (memd.tpin 1) -- (memd.btpin 1);
+	% Escribo los registros
+	\draw (memd.lpin 1) -- (memd.blpin 1) node[right, font=\tiny,align=left]{Dirección};
+	\draw (memd.lpin 3) -- (memd.blpin 3) node[right, font=\tiny,align=left]{Escribir\\dato};
+	\draw (memd.rpin 1) -- (memd.brpin 1) node[left, font=\tiny,align=right]{Leer\\dato};
+
+	% Multiplexor al final
+	\node[mux, fill=gray!50,font=\tiny,yscale=-1] (muxf) at (24,-2) {\scalebox{1}[-1]{Mux}};
+	\draw (muxf.lpin 1) -- (muxf.blpin 1) node[right, font=\tiny,align=right]{0};
+	\draw (muxf.lpin 2) -- (muxf.blpin 2) node[right, font=\tiny,align=right]{1};
+
+	%Unidad de control
+	\node[controlador,fill=gray!50,font=\small\bfseries,align=center](control) at (7.5,4) {Control};
+
+	% Compuerta AND
+	\node[and port, fill=gray!50] (and) at (19,6) {};
+
+	%ALUOp
+	\node[aluop,fill=gray!50,font=\small\bfseries,align=center](opalu) at (14,-7) {Control \\ ALU};
+	
+
+	% Conexiones
+	\draw
+	(PC.pin 9) -- ++(0.5,0)|- (ins.lpin 1)
+	(PC.pin 9) -- ++(0.5,0)|- (alu1.lpin 1)
+	(PC.pin 9) -- ++(0.5,0)|- (alu2.lpin 1)
+
+	(regis.lpin 1) -- ++ (-1,0) to[align=center,multiwire={[19-15]},font=\tiny] ++(-1,0) |- (ins.rpin 5)
+	
+	(regis.lpin 2) -- ++ (-1,0) to[align=center,multiwire={[24-20]},font=\tiny] ++(-1,0) |- (ins.rpin 5)
+
+	(regis.lpin 5) -- ++ (-1,0) to[align=center,multiwire={[11-7]},font=\tiny] ++(-1,0) |- (ins.rpin 5)
+
+	(control.lpin 1) -- ++ (-1,0) to[align=center,multiwire={[6-0]},font=\tiny] ++(-1,0) |- (ins.rpin 5)
+
+	(regis.rpin 1)-- ++(0.5,0)|- (alup.lpin 1)
+
+	(regis.rpin 2)-- ++(0.4,0)|- (mux1.lpin 2)
+
+	(mux1.rpin 1)-- ++(0.4,0)|- (alup.lpin 2)
+
+	(imm.pin 2) -- ++ (-1,0) to[align=center,multiwire={[31-0]},font=\tiny] ++(-2.12,0) |- (ins.rpin 5);
+
+	
+	\draw[blue]
+	(imm.pin 5) to[multiwire=64,font=\tiny,color=blue] ++ (1,0) -| (mux1.lpin 1)
+	(imm.pin 5) to[multiwire=64,font=\tiny] ++ (1,0) -| (shift.bpin 1);
+
+	\draw
+	(shift.rpin 1) -- ++(0.4,0)|-(alu2.lpin 2)
+
+	(alu1.rpin 1)-- ++(0.4,0)|- (mux2.lpin 1)
+	(alu2.rpin 1)-- ++(0.4,0)|- (mux2.lpin 2)
+
+	(mux2.rpin 1) -- ++ (0,3.5) -|  ++ (-22,0) -| ++ (0,-15.5) -- (PC.pin 3)
+
+	(alup.rpin 2)-- ++(0.4,0)|- (memd.lpin 1)
+
+	(regis.rpin 2) -- ++ (0.4,0) |- (memd.lpin 3)
+
+	(memd.rpin 1) -- ++ (0.4,0)|-(muxf.lpin 2)
+
+	(alup.rpin 2)-- ++(0.4,0)|- ++(0,-5) -|  (muxf.lpin 1)
+
+	(muxf.rpin 1) -- ++(0.4,0) |-  ++(0,-6) -| (regis.lpin 6)
+
+	(control.rpin 1) to[short,font=\tiny,l={Branch}] ++(5,0) |- (and.in 1)
+	(control.rpin 2) to[short,font=\tiny,l={MemRead}] ++(14,0) |- (memd.bpin 1)
+	(control.rpin 3) to[short,font=\tiny,l={Mem2Reg}] ++(15,0) -| (muxf.bpin 1)
+	(control.rpin 4) to[short,font=\tiny,l={ALUOp}] ++(4.5,0) |- (opalu.lpin 1)
+	(control.rpin 5) to[short,font=\tiny,l={MemWrite}] ++(1.5,0) -| (memd.tpin 1)
+	(control.rpin 6) to[short,font=\tiny,l={ALUSrc}] ++(1.5,0) -| (mux1.bpin 1)
+	(control.rpin 7) to[short,font=\tiny,l={RegWrite}] ++(1.5,0) -| (regis.tpin 3)
+
+	(alup.rpin 1) -- ++(0.4,0) |- (and.in 2)
+	(opalu.rpin 1) -- ++ (0.3,0) |- (alup.bpin 1)
+	(and.out) -- ++(0.4,0) -| (mux2.bpin 1)
+	;
+\end{circuitikz}}
+\end{center}
+
+\section{Realice una tabla de verdad para todas las señales de control.}
+Se realiza una tabla de verdad con todas las señales de control:
+
+% Table generated by Excel2LaTeX from sheet 'Hoja2'
+\begin{table}[htbp]
+	\centering
+	  \begin{tabular}{|c|c|c|c|c|c|}
+	  \hline
+	  Entrada o salida & Nombre de la señal & R-format & ld & sd & beq \\
+	  \hline
+	  \multirow{7}{*}{Entrada} & I[6] & 0    & 0    & 0    & 1 \\
+  \cline{2-6}         & I[5] & 1    & 0    & 1    & 1 \\
+  \cline{2-6}         & I[4] & 1    & 0    & 0    & 0 \\
+  \cline{2-6}         & I[3] & 0    & 0    & 0    & 0 \\
+  \cline{2-6}         & I[2] & 0    & 0    & 0    & 0 \\
+  \cline{2-6}         & I[1] & 1    & 1    & 1    & 1 \\
+  \cline{2-6}         & I[0] & 1    & 1    & 1    & 1 \\
+	  \hline
+	\multirow{8}{*}{Salida} & ALUSrc & 0    & 1    & 1    & 0 \\
+  \cline{2-6}         & MemtoReg & 0    & 1    & X & X \\
+  \cline{2-6}         & RegWrite & 1    & 1    & 0    & 0 \\
+  \cline{2-6}         & MemRead & 0    & 1    & 0    & 0 \\
+  \cline{2-6}         & MemWrite & 0    & 0    & 1    & 0 \\
+  \cline{2-6}         & Branch & 0    & 0    & 0    & 1 \\
+  \cline{2-6}         & ALUOp1 & 1    & 0    & 0    & 0 \\
+  \cline{2-6}         & ALUOp0 & 0    & 0    & 0    & 1 \\
+	  \hline
+	  \end{tabular}%
+	  \caption{Tabla de verdad con las entradas y salidas de las señales de control.}
+	\label{tab:addlabel}%
+  \end{table}%
 \section{Cree un repositorio en www.gitlab.com siguiendo este tutorial:
 \small https://alejandrojs.wordpress.com/2017/06/01/como-empezar-a-usar-git-con-gitlab/}
 
